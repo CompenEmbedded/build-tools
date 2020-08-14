@@ -19,5 +19,8 @@ RUN apt-get update && \
     bzip2 \
     curl \
     jq \
-    wget && \
+    wget \
+    python3-pip && \
   apt-get clean
+
+RUN pip3 install cpplint
