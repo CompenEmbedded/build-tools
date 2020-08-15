@@ -19,11 +19,15 @@ RUN apt-get update && \
     curl \
     jq \
     wget \
-    python3-pip && \
+    python3-pip \ 
+    lcov && \
   apt-get clean
 
 # Install CppLint
 RUN pip3 install cpplint
+
+# Install Gcovr
+RUN pip3 install gcovr
 
 # Install Catch2
 RUN git clone --depth 1 --branch v2.13.0 https://github.com/catchorg/Catch2.git && \
