@@ -1,9 +1,8 @@
 FROM ubuntu:18.04
 LABEL maintainer="Pieter Compen <info@compen.net>"
-LABEL Description="Image for building, debugging and documenting arm-embedded projects"
-WORKDIR /work
+LABEL Description="Image for building, debugging, testing and documenting arm-embedded projects"
 
-ADD . /work
+WORKDIR /work
 
 RUN apt-get update && \
   apt-get upgrade -y && \
@@ -23,4 +22,11 @@ RUN apt-get update && \
     python3-pip && \
   apt-get clean
 
+# Install CppLint
 RUN pip3 install cpplint
+
+# Install Catch2
+RUN git clone --depth 1 --branch v2.13.0 https://github.com/catchorg/Catch2.git && \
+    cd Catch2 && \
+    cmake -Bbuild -H. -DBUILD_TESTING=OFF && \
+    cmake --build build/ --target install 
