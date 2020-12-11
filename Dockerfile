@@ -23,6 +23,15 @@ RUN apt-get update && \
     lcov && \
   apt-get clean
 
+# Download .NET
+RUN wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && yes | dpkg -i packages-microsoft-prod.deb
+
+RUN sudo apt-get update && \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-5.0 && \
+  apt-get clean
+
 # Install CppLint
 RUN pip3 install cpplint
 
