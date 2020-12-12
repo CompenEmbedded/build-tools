@@ -15,10 +15,12 @@ RUN apt-get update && \
     openssh-client \
     gcc-arm-none-eabi \
     cmake \
+    cmake-data \
     bzip2 \
     curl \
     jq \
     wget \
+    python3-dev \
     python3-pip \ 
     lcov && \
   apt-get clean
