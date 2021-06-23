@@ -21,7 +21,9 @@ RUN apt-get update && \
     jq \
     wget \
     python3-dev \
-    python3-pip \ 
+    python3-pip \
+    texlive-full \
+    graphviz \
     lcov && \
   apt-get clean
 
