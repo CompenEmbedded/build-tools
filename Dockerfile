@@ -1,8 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 LABEL maintainer="Pieter Compen <info@compen.net>"
 LABEL Description="Image for building, debugging, testing and documenting arm-embedded projects"
 
 WORKDIR /work
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND teletype
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
+ENV TZ=Europe/Amsterdam
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && \
   apt-get upgrade -y && \
@@ -24,6 +31,7 @@ RUN apt-get update && \
     python3-pip \
     texlive-full \
     graphviz \
+    ninja-build \
     lcov && \
   apt-get clean
 
