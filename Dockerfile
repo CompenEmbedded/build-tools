@@ -32,6 +32,11 @@ RUN apt-get update && \
     texlive-full \
     graphviz \
     ninja-build \
+    libturbojpeg0-dev \
+    libsdl2-dev \
+    libglew-dev \
+    libsdl2-image-dev \
+    libglm-dev \
     lcov && \
   apt-get clean
 
