@@ -31,7 +31,7 @@ RUN apt-get update && \
   apt-get clean
 
 # Install Catch2
-RUN git clone --depth 1 --branch v2.13.0 https://github.com/catchorg/Catch2.git && \
+RUN git clone --depth 1 --branch v3.6.0 https://github.com/catchorg/Catch2.git && \
     cd Catch2 && \
     cmake -Bbuild -H. -DBUILD_TESTING=OFF && \
     cmake --build build/ --target install 
