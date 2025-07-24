@@ -10,8 +10,6 @@ RUN apt-get update && \
   apt-get upgrade -y && \
   apt-get install -y \
     build-essential \
-    libcmocka0 \
-    libcmocka-dev \
     doxygen \
     git \
     openssh-client \
@@ -30,8 +28,17 @@ RUN apt-get update && \
     lcov && \
   apt-get clean
 
-# Install Catch2
-RUN git clone --depth 1 --branch v3.6.0 https://github.com/catchorg/Catch2.git && \
-    cd Catch2 && \
-    cmake -Bbuild -H. -DBUILD_TESTING=OFF && \
-    cmake --build build/ --target install 
+RUN apt-get install -y openocd
+RUN pip3 install telnetlib3 --break-system-packages
+RUN pip3 install pysourcegen --break-system-packages
+
+RUN apt -y install gdb-multiarch
+RUN apt -y install dos2unix
+RUN apt -y install xxd
+
+RUN wget https://github.com/plantuml/plantuml/releases/download/v1.2024.6/plantuml-asl-1.2024.6.jar && mv plantuml-asl-1.2024.6.jar /usr/share/plantuml.jar
+RUN apt -y install default-jre
+RUN git clone https://github.com/jothepro/doxygen-awesome-css.git && cd doxygen-awesome-css && git checkout v2.3.3 && make install
+RUN apt -y install graphviz
+RUN apt -y install clang-format
+RUN apt -y install qtbase5-dev qt5-qmake libqt5charts5-dev
